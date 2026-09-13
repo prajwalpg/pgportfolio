@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, FileText, FolderCode, Send, Sparkles, Mail } from "lucide-react";
+import { Github, Linkedin, FileText, FolderCode, Mail, Sparkles } from "lucide-react";
 import NeuralNetworkHeroCanvas from "./NeuralNetworkHeroCanvas";
 import PrajwalPortraitScanner from "./PrajwalPortraitScanner";
 import EmbeddingVectorHUD from "./EmbeddingVectorHUD";
@@ -51,53 +51,68 @@ export default function Hero() {
         >
           {/* LEFT COLUMN: Headline & Buttons & Orbit */}
           <motion.div variants={item} className="flex flex-col gap-5 lg:col-span-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1.5 font-mono text-xs font-bold text-cyan-300 backdrop-blur w-fit">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs font-bold text-emerald-300 backdrop-blur w-fit">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
-              AI ENGINEER / PORTFOLIO
+              OPEN TO AI ENGINEERING OPPORTUNITIES
             </div>
 
             <div>
               <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 {profile.name}
               </h1>
+              <p className="mt-1 text-xs font-mono font-semibold tracking-widest text-violet-400">
+                AI ENGINEER · MYSORE, INDIA
+              </p>
               <p className="mt-2 text-xl font-bold tracking-tight text-white/90 sm:text-2xl">
-                {profile.headline}
+                Building practical AI applications that understand, retrieve, and automate.
               </p>
             </div>
 
             <p className="text-sm font-semibold tracking-wide text-cyan-300">
-              {profile.tagline}
+              Generative AI • RAG • Computer Vision • AI Agents
             </p>
 
             <p className="text-xs leading-relaxed text-white/70 sm:text-sm">
-              {profile.intro}
+              I build AI-powered applications across Generative AI, RAG, Multi-Agent Systems, Computer Vision, and OCR.
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-cyan-500/30 transition-transform hover:scale-[1.02]"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-violet-600/30 transition-transform hover:scale-[1.02]"
               >
-                <span className="absolute inset-0 shimmer" aria-hidden />
                 <FolderCode className="relative h-4 w-4" />
-                <span className="relative">View Projects</span>
+                <span className="relative">VIEW PROJECTS</span>
               </a>
 
               <a
-                href="#resume"
+                href="/resume/ResumePrajwal(1).pdf"
+                download="ResumePrajwal(1).pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 rounded-xl bg-violet-500/10 border border-violet-500/30 px-4 py-2.5 text-xs font-medium text-white transition-all hover:bg-violet-500/20"
+              >
+                <FileText className="h-4 w-4 text-violet-300" />
+                DOWNLOAD RESUME
+              </a>
+
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
                 className="group inline-flex items-center gap-2 rounded-xl bg-white/5 px-4 py-2.5 text-xs font-medium text-white ring-1 ring-white/10 transition-all hover:bg-white/10"
               >
-                <FileText className="h-4 w-4 text-cyan-300" />
-                View Resume
+                <Github className="h-4 w-4" />
+                GITHUB
               </a>
             </div>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-3 text-white/70">
+            <div className="flex items-center gap-3 text-white/70 pt-1">
               <a
                 href={profile.github}
                 target="_blank"

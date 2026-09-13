@@ -2,16 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FileSearch, CheckCircle, ArrowRight, Database, Code } from "lucide-react";
+import { FileSearch, CheckCircle, Database } from "lucide-react";
 
 export default function DocumentOCRVisual() {
   const [activeField, setActiveField] = useState(0);
 
   const fields = [
-    { label: "PRODUCT_NAME", val: "Organic Almond Milk 1L", box: { top: "18%", left: "15%", width: "70%", height: "20%" } },
-    { label: "PRICE_TAG", val: "$4.99 USD", box: { top: "44%", left: "15%", width: "40%", height: "18%" } },
-    { label: "BATCH_CODE", val: "LOT#2026-X892", box: { top: "44%", left: "60%", width: "30%", height: "18%" } },
-    { label: "MANUFACTURER", val: "Runshaw Labs Ltd.", box: { top: "68%", left: "15%", width: "70%", height: "20%" } },
+    { label: "product_name", val: "Example Product", box: { top: "18%", left: "15%", width: "70%", height: "20%" } },
+    { label: "price", val: "Example Price", box: { top: "44%", left: "15%", width: "40%", height: "18%" } },
+    { label: "batch_code", val: "EXAMPLE-BATCH-01", box: { top: "44%", left: "60%", width: "30%", height: "18%" } },
+    { label: "manufacturer", val: "Example Manufacturer", box: { top: "68%", left: "15%", width: "70%", height: "20%" } },
   ];
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function DocumentOCRVisual() {
         </div>
 
         <span className="rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-xs font-mono font-semibold text-amber-300">
-          Packaging Info Extraction
+          INTERNSHIP POC · EXAMPLE OUTPUT
         </span>
       </div>
 
@@ -47,7 +47,7 @@ export default function DocumentOCRVisual() {
         {/* Document Scanner Side */}
         <div className="relative h-[220px] rounded-2xl border border-white/10 bg-black/60 p-4 overflow-hidden">
           <div className="text-[10px] font-mono text-amber-400/80 mb-2 uppercase flex items-center gap-1">
-            <ScanIcon /> Bounding Box Detection (OpenCV + EasyOCR)
+            <ScanIcon /> IMAGE INPUT &rarr; PREPROCESSING &rarr; OCR (OpenCV + EasyOCR)
           </div>
 
           <div className="relative h-[160px] w-full rounded-xl border border-white/10 bg-slate-900/90 p-3 overflow-hidden">
@@ -91,9 +91,9 @@ export default function DocumentOCRVisual() {
         <div className="relative flex h-[220px] flex-col justify-between rounded-2xl border border-white/10 bg-black/80 p-4 font-mono text-xs">
           <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-emerald-400">
             <span className="flex items-center gap-1 font-bold">
-              <Database className="h-3.5 w-3.5" /> Structured REST API JSON
+              <Database className="h-3.5 w-3.5" /> EXAMPLE STRUCTURED OUTPUT (JSON)
             </span>
-            <span className="text-[10px] text-white/40">Status: 200 OK</span>
+            <span className="text-[10px] text-amber-300">DEMO DATA</span>
           </div>
 
           <div className="my-2 space-y-1.5 overflow-y-auto text-[11px] text-white/80">
@@ -114,7 +114,7 @@ export default function DocumentOCRVisual() {
 
           <div className="flex items-center gap-2 border-t border-white/10 pt-2 text-[10px] text-white/50">
             <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />
-            <span>Integrated into Flask REST APIs for downstream processing</span>
+            <span>Integrated into Flask REST APIs for automated processing</span>
           </div>
         </div>
       </div>

@@ -1,24 +1,24 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { UserCheck, Eye, CheckCircle2, Cpu, ShieldCheck } from "lucide-react";
+import { UserCheck, CheckCircle2 } from "lucide-react";
 
 export default function SmartAttendanceVisual() {
-  const [phase, setPhase] = useState<0 | 1 | 2 | 3>(0);
+  const [phase, setPhase] = useState<0 | 1 | 2 | 3 | 4>(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setPhase((prev) => ((prev + 1) % 4) as 0 | 1 | 2 | 3);
+      setPhase((prev) => ((prev + 1) % 5) as 0 | 1 | 2 | 3 | 4);
     }, 2400);
     return () => clearInterval(timer);
   }, []);
 
   const stages = [
-    { title: "1. Video Feed Input", detail: "Real-time webcam stream captured via OpenCV" },
-    { title: "2. SSD Face Detection", detail: "Single Shot MultiBox Detector localizes facial bounding box" },
-    { title: "3. MobileNetV2 Embeddings", detail: "Deep feature extraction mapped to 128d face vector" },
-    { title: "4. Attendance Logged", detail: "Identity verified & database attendance entry created" },
+    { title: "1. Face Input", detail: "Real-time webcam stream captured via OpenCV" },
+    { title: "2. Face Detection", detail: "SSD (Single Shot MultiBox Detector) bounding box localization" },
+    { title: "3. Feature Extraction", detail: "Deep facial landmark alignment and edge features" },
+    { title: "4. MobileNetV2 Embedding", detail: "Feature vector mapping into dense embedding space" },
+    { title: "5. Match & Attendance", detail: "Identity match verification & automated log registration" },
   ];
 
   return (
@@ -37,26 +37,26 @@ export default function SmartAttendanceVisual() {
         </div>
 
         <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-mono font-semibold text-cyan-300">
-          Real-Time Facial Recognition
+          Real-Time Facial Recognition Pipeline
         </span>
       </div>
 
       {/* Stage Progression Display */}
-      <div className="mt-5 grid gap-3 sm:grid-cols-4">
+      <div className="mt-5 grid gap-3 sm:grid-cols-5">
         {stages.map((st, idx) => {
           const isActive = phase === idx;
           return (
             <div
               key={st.title}
               onClick={() => setPhase(idx as any)}
-              className={`cursor-pointer rounded-2xl border p-4 transition-all ${
+              className={`cursor-pointer rounded-2xl border p-3.5 transition-all ${
                 isActive
                   ? "border-cyan-400 bg-cyan-500/20 shadow-lg shadow-cyan-500/20"
                   : "border-white/8 bg-black/40 hover:bg-white/5"
               }`}
             >
               <div className="text-[11px] font-mono text-cyan-300 font-bold">{st.title}</div>
-              <div className="mt-2 text-xs leading-relaxed text-white/70">{st.detail}</div>
+              <div className="mt-1.5 text-xs leading-relaxed text-white/70">{st.detail}</div>
             </div>
           );
         })}
@@ -66,10 +66,12 @@ export default function SmartAttendanceVisual() {
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-white/10 bg-black/70 p-4 font-mono text-xs text-white">
         <div className="flex items-center gap-2">
           <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-          <span>MATCH CONFIDENCE: <strong className="text-emerald-300">98.4%</strong></span>
+          <span>
+            IDENTITY MATCH CONFIDENCE: <strong className="text-emerald-300">98.4% (DEMO VALUE)</strong>
+          </span>
         </div>
         <div className="text-white/60">
-          STUDENT_ID: <strong className="text-cyan-300">4P12604</strong> | STATUS: <strong className="text-emerald-300">PRESENT</strong>
+          ATTENDANCE STATUS: <strong className="text-emerald-300">PRESENT</strong> | <span className="text-amber-300">DEMO VISUALIZATION</span>
         </div>
       </div>
     </div>

@@ -1,81 +1,63 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { FileText, Download, Eye, CheckCircle2 } from "lucide-react";
+import { FileText, Download, CheckCircle2 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
-import { profile } from "@/lib/portfolio-data";
 
 export default function Resume() {
   return (
     <section id="resume" className="section-anchor relative py-24">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="mx-auto max-w-6xl px-5">
+      <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
           eyebrow="Resume"
           title={
             <>
-              View & Download{" "}
-              <span className="gradient-text">Current Resume</span>.
+              Technical <span className="gradient-text">Background & Resume</span>
             </>
           }
-          description="Access the complete, recruiter-ready PDF resume summarizing my AI engineering background."
+          description="Download my latest resume for a detailed overview of my skills, experience, projects, education, and achievements."
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.55 }}
-          className="glass-strong glow-border relative overflow-hidden rounded-3xl p-7 sm:p-10"
+          transition={{ duration: 0.5 }}
+          className="glass-strong glow-border relative overflow-hidden rounded-3xl p-8 sm:p-10 text-center flex flex-col items-center justify-center space-y-6"
         >
-          {/* Decorative glow */}
+          {/* Background Ambient Blur */}
           <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-violet-500/15 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-blue-500/15 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-cyan-500/15 blur-3xl" />
 
-          <div className="relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-            <div className="flex items-start gap-4">
-              <div className="grid h-14 w-14 flex-shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-violet-500/30 to-blue-500/20 ring-1 ring-white/10">
-                <FileText className="h-6 w-6 text-violet-200" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white">
-                  Prajwal PG — AI Engineer Resume
-                </h3>
-                <p className="mt-1 max-w-md text-sm text-white/65">
-                  Generative AI · RAG · Multi-Agent Systems · Computer Vision · OCR
-                </p>
-                <div className="mt-3 flex flex-wrap items-center gap-3 text-[11px] text-white/50">
-                  <span className="rounded-md border border-white/10 bg-black/30 px-2 py-0.5 font-mono">
-                    PDF Document
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-emerald-300">
-                    <CheckCircle2 className="h-3 w-3" />
-                    Verified Resume
-                  </span>
-                </div>
-              </div>
-            </div>
+          <div className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-violet-500/30 to-blue-500/20 ring-1 ring-white/15 text-violet-300">
+            <FileText className="h-8 w-8" />
+          </div>
 
-            <div className="flex w-full flex-wrap gap-2.5 sm:w-auto">
-              <a
-                href={profile.resumeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-transform hover:scale-[1.02] sm:flex-none"
-              >
-                <Eye className="h-4 w-4" />
-                View Resume
-              </a>
-              <a
-                href={profile.resumeUrl}
-                download="Prajwal_PG_Resume.pdf"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/80 backdrop-blur transition-colors hover:bg-white/10 hover:text-white sm:flex-none"
-              >
-                <Download className="h-4 w-4" />
-                Download Resume
-              </a>
-            </div>
+          <div className="max-w-xl space-y-2">
+            <h3 className="text-2xl font-bold text-white">
+              Interested in my background and technical experience?
+            </h3>
+            <p className="text-xs text-white/65 leading-relaxed">
+              Download my latest resume for a detailed overview of my skills, experience, projects, education, and achievements.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 pt-2">
+            <a
+              href="/resume/ResumePrajwal(1).pdf"
+              download="ResumePrajwal(1).pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-xl shadow-violet-600/30 transition-transform hover:scale-[1.02]"
+            >
+              <Download className="h-4 w-4" />
+              DOWNLOAD RESUME &rarr;
+            </a>
+            <span className="text-[11px] font-mono text-white/40 flex items-center gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> PDF • Official Verified Resume
+            </span>
           </div>
         </motion.div>
       </div>

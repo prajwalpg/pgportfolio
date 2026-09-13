@@ -7,6 +7,7 @@ import KnowledgeGraphOverlay from "@/components/portfolio/KnowledgeGraphOverlay"
 import { InferenceModeProvider } from "@/components/portfolio/InferenceModeContext";
 import Hero from "@/components/portfolio/Hero";
 import About from "@/components/portfolio/About";
+import AIPlayground from "@/components/portfolio/AIPlayground";
 import Skills from "@/components/portfolio/Skills";
 import Projects from "@/components/portfolio/Projects";
 import Experience from "@/components/portfolio/Experience";
@@ -30,6 +31,7 @@ export default function Home() {
         <main className="flex-1">
           <Hero />
           <About />
+          <AIPlayground />
           <Skills />
           <Projects />
           <Experience />

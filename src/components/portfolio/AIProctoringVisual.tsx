@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ShieldAlert, Eye, Monitor, Users, CopyCheck, AlertTriangle } from "lucide-react";
+import { ShieldAlert, Monitor, AlertTriangle } from "lucide-react";
 
 export default function AIProctoringVisual() {
   const [activeSignal, setActiveSignal] = useState(0);
@@ -38,7 +38,7 @@ export default function AIProctoringVisual() {
         </div>
 
         <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-mono font-semibold text-emerald-300">
-          HirePro Internship POC
+          INTERNSHIP POC
         </span>
       </div>
 
@@ -48,10 +48,10 @@ export default function AIProctoringVisual() {
           {/* Header Bar */}
           <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[10px] font-mono text-white/60">
             <span className="flex items-center gap-1">
-              <Monitor className="h-3 w-3 text-emerald-400" /> Online Exam Candidate Session #8921
+              <Monitor className="h-3 w-3 text-emerald-400" /> ASSESSMENT INTEGRITY ANALYSIS
             </span>
-            <span className="flex items-center gap-1 text-emerald-400 font-bold">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" /> LIVE MONITOR
+            <span className="flex items-center gap-1 text-amber-300 font-bold">
+              DEMO VISUALIZATION
             </span>
           </div>
 
@@ -68,7 +68,7 @@ export default function AIProctoringVisual() {
               {/* Bounding Box overlay */}
               <div className="absolute inset-0 rounded border border-emerald-400/80 shadow-[0_0_10px_rgba(52,211,153,0.3)]">
                 <span className="absolute -top-3 left-0 rounded bg-emerald-500 px-1 py-0.2 font-mono text-[8px] text-black font-bold">
-                  FACE: 99.1% CONF
+                  FACE: DEMO VALUE
                 </span>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function AIProctoringVisual() {
         {/* Signal Checklist Status */}
         <div className="relative flex h-[220px] flex-col justify-between rounded-2xl border border-white/10 bg-black/80 p-4 font-mono text-xs">
           <div className="text-[11px] font-bold text-emerald-400 border-b border-white/10 pb-2">
-            Real-Time Integrity Signal Vectors
+            Real-Time Behavioral &amp; Vision Signals
           </div>
 
           <div className="my-2 space-y-2 text-xs">
@@ -103,7 +103,7 @@ export default function AIProctoringVisual() {
 
           <div className="flex items-center gap-2 border-t border-white/10 pt-2 text-[10px] text-white/45">
             <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
-            <span>Research &amp; evaluation module developed during HirePro internship</span>
+            <span>Research &amp; evaluation POC developed during HirePro internship</span>
           </div>
         </div>
       </div>

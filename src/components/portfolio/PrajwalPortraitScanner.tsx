@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Eye, Scan, Sparkles } from "lucide-react";
+import { CheckCircle2, Scan, Sparkles } from "lucide-react";
 
 export default function PrajwalPortraitScanner() {
   const [hovered, setHovered] = useState(false);
@@ -47,15 +47,15 @@ export default function PrajwalPortraitScanner() {
         className="glass-strong glow-border mb-3 flex items-center gap-3 rounded-xl px-3.5 py-1.5 font-mono text-[11px] text-white shadow-xl backdrop-blur z-20"
       >
         <Scan className="h-3.5 w-3.5 text-cyan-300 animate-pulse" />
-        <span className="font-bold text-cyan-300">FACE DETECTION:</span>
+        <span className="font-bold text-cyan-300">COMPUTER VISION ANALYSIS:</span>
         <span className="flex items-center gap-1 text-emerald-300">
-          <CheckCircle2 className="h-3 w-3" /> Face Found
+          <CheckCircle2 className="h-3 w-3" /> Feature Points
         </span>
         <span className="flex items-center gap-1 text-cyan-300">
-          <CheckCircle2 className="h-3 w-3" /> Processing
+          <CheckCircle2 className="h-3 w-3" /> Landmarks
         </span>
         <span className="flex items-center gap-1 text-violet-300">
-          <CheckCircle2 className="h-3 w-3" /> Identity Match
+          <CheckCircle2 className="h-3 w-3" /> Vector Embedding
         </span>
       </motion.div>
 
@@ -130,13 +130,13 @@ export default function PrajwalPortraitScanner() {
             <span className="flex items-center gap-1">
               <Sparkles className="h-3 w-3" /> FEATURE EXTRACTION
             </span>
-            <span className="text-emerald-300 text-[9px]">LIVE LANDMARKS</span>
+            <span className="text-emerald-300 text-[9px]">COMPUTER VISION DEMO</span>
           </div>
           <div className="mt-1.5 flex justify-between text-white/60">
             <span>• Eyes</span>
             <span>• Nose</span>
             <span>• Mouth</span>
-            <span>• Face Mesh</span>
+            <span>• Vector Mesh</span>
           </div>
         </div>
       </motion.div>

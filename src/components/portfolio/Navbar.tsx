@@ -2,17 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Menu, X, Cpu, Zap } from "lucide-react";
+import { Github, Linkedin, Menu, X, Zap, FileText } from "lucide-react";
 import { profile } from "@/lib/portfolio-data";
 import { useInferenceMode } from "./InferenceModeContext";
 
 const NAV_LINKS = [
   { href: "#about", label: "About" },
+  { href: "#ai-playground", label: "AI Playground" },
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
   { href: "#education", label: "Education" },
-  { href: "#achievements", label: "Achievements" },
   { href: "#certifications", label: "Certifications" },
   { href: "#resume", label: "Resume" },
   { href: "#contact", label: "Contact" },
@@ -66,11 +66,21 @@ export default function Navbar() {
             PG
             <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-cyan-400 pulse-glow" />
           </span>
-          <span className="hidden text-sm font-medium tracking-wide text-white/80 sm:block">
-            Prajwal PG
-            <span className="ml-2 text-xs text-cyan-300 font-mono">/ AI Engineer</span>
-          </span>
+          <div className="hidden flex-col sm:flex">
+            <span className="text-sm font-medium tracking-wide text-white/90 leading-none">
+              Prajwal PG
+            </span>
+            <span className="text-[10px] text-cyan-300 font-mono mt-0.5">
+              AI Engineer
+            </span>
+          </div>
         </a>
+
+        {/* Status Pill Badge */}
+        <div className="hidden md:inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-mono text-emerald-300">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+          <span>OPEN TO OPPORTUNITIES</span>
+        </div>
 
         {/* Section Links */}
         <div className="hidden items-center gap-1 xl:flex">
@@ -102,7 +112,7 @@ export default function Navbar() {
           <button
             onClick={toggleInferenceMode}
             title="Toggle Inference Mode"
-            className={`hidden sm:inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 font-mono text-xs font-bold transition-all ${
+            className={`hidden sm:inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 font-mono text-xs font-bold transition-all ${
               inferenceMode
                 ? "border-cyan-400/50 bg-cyan-500/20 text-cyan-300 shadow-md shadow-cyan-500/20"
                 : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
@@ -111,6 +121,16 @@ export default function Navbar() {
             <Zap className={`h-3.5 w-3.5 ${inferenceMode ? "text-cyan-300 animate-pulse" : ""}`} />
             <span>INFERENCE {inferenceMode ? "ON" : "OFF"}</span>
           </button>
+
+          <a
+            href="/resume/ResumePrajwal(1).pdf"
+            download="ResumePrajwal(1).pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-violet-500/20 border border-violet-500/40 px-3 py-1.5 text-xs font-mono font-semibold text-violet-300 hover:bg-violet-500/30 transition-all"
+          >
+            <FileText className="h-3.5 w-3.5" /> RESUME
+          </a>
 
           <a
             href={profile.github}
@@ -134,7 +154,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className="hidden rounded-lg bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-violet-500/20 transition-transform hover:scale-[1.02] sm:inline-block"
+            className="hidden rounded-lg bg-gradient-to-r from-violet-500 to-blue-500 px-3.5 py-1.5 text-xs font-semibold text-white shadow-lg shadow-violet-500/20 transition-transform hover:scale-[1.02] sm:inline-block"
           >
             Contact
           </a>
@@ -173,12 +193,22 @@ export default function Navbar() {
                 <span className="font-bold">{inferenceMode ? "ENABLED" : "DISABLED"}</span>
               </button>
 
+              <a
+                href="/resume/ResumePrajwal(1).pdf"
+                download="ResumePrajwal(1).pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="mb-2 flex items-center gap-2 rounded-md bg-violet-600/30 p-2.5 text-xs font-mono font-bold text-violet-300"
+              >
+                <FileText className="h-4 w-4" /> DOWNLOAD RESUME (PDF)
+              </a>
+
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-2.5 text-sm font-medium text-white/80 hover:bg-white/5"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/5"
                 >
                   {link.label}
                 </a>

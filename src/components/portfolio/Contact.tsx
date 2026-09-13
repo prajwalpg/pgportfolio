@@ -11,32 +11,69 @@ import {
   Loader2,
   MapPin,
   Phone,
-  Network,
   Cpu,
   User,
+  Shield,
+  FileText,
+  AlertCircle,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { profile } from "@/lib/portfolio-data";
-
-type Status = "idle" | "sending" | "sent";
+import { submitContactMessage } from "@/lib/actions/contact";
 
 export default function Contact() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+    consent: false,
+    honeypot: "",
+  });
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus("sent");
-    setForm({ name: "", email: "", message: "" });
-    setTimeout(() => setStatus("idle"), 4000);
-  };
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const update =
     (k: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((s) => ({ ...s, [k]: e.target.value }));
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.consent) return;
+
+    setStatus("sending");
+    setErrorMessage(null);
+
+    const res = await submitContactMessage({
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      subject: form.subject,
+      message: form.message,
+      consent: form.consent,
+      honeypot: form.honeypot,
+    });
+
+    if (res.success) {
+      setStatus("sent");
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        consent: false,
+        honeypot: "",
+      });
+      setTimeout(() => setStatus("idle"), 6000);
+    } else {
+      setStatus("error");
+      setErrorMessage(res.error || "Failed to send message.");
+    }
+  };
 
   return (
     <section id="contact" className="section-anchor relative py-24">
@@ -104,29 +141,21 @@ export default function Contact() {
                 <Mail className="h-5 w-5 text-violet-200" />
               </div>
               <div className="min-w-0">
-                <div className="text-[11px] uppercase tracking-wider text-white/45">
-                  Email
-                </div>
-                <div className="truncate text-sm font-medium text-white">
-                  {profile.email}
-                </div>
+                <div className="text-[11px] uppercase tracking-wider text-white/45">Email</div>
+                <div className="truncate text-sm font-medium text-white">{profile.email}</div>
               </div>
             </a>
 
             <a
-              href={`tel:${profile.phone}`}
+              href={`tel:${profile.phone.replace(/[^0-9+]/g, "")}`}
               className="glass glow-border group flex items-center gap-3 rounded-2xl p-4 transition-colors hover:bg-white/8"
             >
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-500/20 ring-1 ring-white/10">
                 <Phone className="h-5 w-5 text-emerald-200" />
               </div>
               <div className="min-w-0">
-                <div className="text-[11px] uppercase tracking-wider text-white/45">
-                  Phone
-                </div>
-                <div className="truncate text-sm font-medium text-white">
-                  {profile.phone}
-                </div>
+                <div className="text-[11px] uppercase tracking-wider text-white/45">Phone</div>
+                <div className="truncate text-sm font-medium text-white">{profile.phone}</div>
               </div>
             </a>
 
@@ -140,9 +169,7 @@ export default function Contact() {
                 <Linkedin className="h-5 w-5 text-cyan-200" />
               </div>
               <div className="min-w-0">
-                <div className="text-[11px] uppercase tracking-wider text-white/45">
-                  LinkedIn
-                </div>
+                <div className="text-[11px] uppercase tracking-wider text-white/45">LinkedIn</div>
                 <div className="truncate text-sm font-medium text-white">
                   /in/prajwal-pg-6ba947253
                 </div>
@@ -159,11 +186,25 @@ export default function Contact() {
                 <Github className="h-5 w-5 text-purple-200" />
               </div>
               <div className="min-w-0">
-                <div className="text-[11px] uppercase tracking-wider text-white/45">
-                  GitHub
-                </div>
-                <div className="truncate text-sm font-medium text-white">
-                  /prajwalpg
+                <div className="text-[11px] uppercase tracking-wider text-white/45">GitHub</div>
+                <div className="truncate text-sm font-medium text-white">/prajwalpg</div>
+              </div>
+            </a>
+
+            <a
+              href="/resume/ResumePrajwal(1).pdf"
+              download="ResumePrajwal(1).pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="glass glow-border group flex items-center gap-3 rounded-2xl p-4 transition-colors hover:bg-white/8"
+            >
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-fuchsia-500/30 to-pink-500/20 ring-1 ring-white/10">
+                <FileText className="h-5 w-5 text-fuchsia-200" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[11px] uppercase tracking-wider text-white/45">Resume</div>
+                <div className="truncate text-sm font-semibold text-fuchsia-300">
+                  DOWNLOAD RESUME (PDF)
                 </div>
               </div>
             </a>
@@ -173,12 +214,8 @@ export default function Contact() {
                 <MapPin className="h-5 w-5 text-amber-200" />
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-wider text-white/45">
-                  Location
-                </div>
-                <div className="text-sm font-medium text-white">
-                  {profile.location}
-                </div>
+                <div className="text-[11px] uppercase tracking-wider text-white/45">Location</div>
+                <div className="text-sm font-medium text-white">{profile.location}</div>
               </div>
             </div>
           </motion.div>
@@ -194,13 +231,35 @@ export default function Contact() {
           >
             <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-violet-500/15 blur-3xl" />
 
+            {/* Honeypot field */}
+            <input
+              type="text"
+              name="company_url_hp"
+              value={form.honeypot}
+              onChange={(e) => setForm((s) => ({ ...s, honeypot: e.target.value }))}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+
+            {status === "sent" && (
+              <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-xs text-emerald-300 flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 shrink-0" />
+                <span>Message sent successfully. I&apos;ll get back to you soon.</span>
+              </div>
+            )}
+
+            {status === "error" && errorMessage && (
+              <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-xs text-red-300 flex items-center gap-2">
+                <AlertCircle className="h-5 w-5 shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
             <div className="relative grid gap-4 sm:grid-cols-2">
               <div className="flex flex-col gap-1.5">
-                <label
-                  htmlFor="name"
-                  className="text-xs font-medium text-white/65"
-                >
-                  Your name
+                <label htmlFor="name" className="text-xs font-medium text-white/65">
+                  Your name <span className="text-violet-400">*</span>
                 </label>
                 <input
                   id="name"
@@ -212,11 +271,8 @@ export default function Contact() {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label
-                  htmlFor="email"
-                  className="text-xs font-medium text-white/65"
-                >
-                  Your email
+                <label htmlFor="email" className="text-xs font-medium text-white/65">
+                  Your email <span className="text-violet-400">*</span>
                 </label>
                 <input
                   id="email"
@@ -230,22 +286,68 @@ export default function Contact() {
               </div>
             </div>
 
+            <div className="relative grid gap-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="phone" className="text-xs font-medium text-white/65">
+                  Phone <span className="text-white/40">(Optional)</span>
+                </label>
+                <input
+                  id="phone"
+                  value={form.phone}
+                  onChange={update("phone")}
+                  placeholder="+91-XXXXX XXXXX"
+                  className="rounded-xl border border-white/10 bg-black/30 px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-violet-400/40 focus:bg-black/40"
+                />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="subject" className="text-xs font-medium text-white/65">
+                  Subject <span className="text-white/40">(Optional)</span>
+                </label>
+                <input
+                  id="subject"
+                  value={form.subject}
+                  onChange={update("subject")}
+                  placeholder="AI Engineer Opportunity / Project Inquiry"
+                  className="rounded-xl border border-white/10 bg-black/30 px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-violet-400/40 focus:bg-black/40"
+                />
+              </div>
+            </div>
+
             <div className="relative flex flex-col gap-1.5">
-              <label
-                htmlFor="message"
-                className="text-xs font-medium text-white/65"
-              >
-                Message
+              <label htmlFor="message" className="text-xs font-medium text-white/65">
+                Message <span className="text-violet-400">*</span>
               </label>
               <textarea
                 id="message"
                 required
                 value={form.message}
                 onChange={update("message")}
-                rows={5}
+                rows={4}
                 placeholder="Hi Prajwal, we would like to discuss an AI Engineer opportunity with you…"
                 className="resize-none rounded-xl border border-white/10 bg-black/30 px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-violet-400/40 focus:bg-black/40"
               />
+            </div>
+
+            {/* Consent Checkbox */}
+            <div className="relative space-y-2 rounded-xl bg-white/[0.02] p-3.5 border border-white/5 text-[11px] text-white/70">
+              <label className="flex items-start gap-2.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  required
+                  checked={form.consent}
+                  onChange={(e) => setForm((s) => ({ ...s, consent: e.target.checked }))}
+                  className="mt-0.5 rounded border-white/20 bg-white/10 text-violet-600 focus:ring-violet-500"
+                />
+                <span className="text-white/80">
+                  I agree to have my message stored so I can be contacted regarding this inquiry. <span className="text-violet-400">*</span>
+                </span>
+              </label>
+              <div className="flex items-center gap-1 text-[10px] text-white/40 pt-1 border-t border-white/5">
+                <Shield className="h-3 w-3 text-violet-400" />
+                <span>
+                  Your message is stored securely so I can respond to your inquiry. Visitor names are only collected when voluntarily submitted.
+                </span>
+              </div>
             </div>
 
             <div className="relative flex items-center justify-between gap-3 pt-1">
@@ -254,25 +356,18 @@ export default function Contact() {
               </p>
               <button
                 type="submit"
-                disabled={status !== "idle"}
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70"
+                disabled={status === "sending" || !form.consent}
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-40"
               >
-                {status === "idle" && (
+                {status === "sending" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Transmitting…
+                  </>
+                ) : (
                   <>
                     <Send className="h-4 w-4" />
                     Transmit message
-                  </>
-                )}
-                {status === "sending" && (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    Sending…
-                  </>
-                )}
-                {status === "sent" && (
-                  <>
-                    <CheckCircle2 className="h-4 w-4" />
-                    Message transmitted
                   </>
                 )}
               </button>
