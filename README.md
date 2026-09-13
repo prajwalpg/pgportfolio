@@ -1,12 +1,23 @@
 # Prajwal PG — AI Engineer Portfolio
 
-A modern, interactive portfolio for **Prajwal PG**, an AI Engineer focused on Generative AI, Retrieval-Augmented Generation (RAG), Multi-Agent Systems, Computer Vision, OCR, and AI-powered applications.
+A modern, interactive portfolio for **Prajwal PG**, an AI Engineer focused on **Generative AI, Retrieval-Augmented Generation (RAG), Multi-Agent Systems, Computer Vision, OCR, and AI-powered applications**.
 
-The portfolio uses an AI/ML-inspired visual experience with neural-network animations, embedding visualizations, computer-vision effects, data-flow animations, and interactive project experiences.
+The portfolio combines an AI/ML-inspired visual experience with neural-network animations, embedding visualizations, computer-vision effects, data-flow animations, and interactive project experiences.
+
+## 🔗 Links
+
+- **Portfolio:** https://pralwalpg-portfolio.vercel.app/
+- **GitHub:** https://github.com/prajwalpg
+- **Portfolio Repository:** https://github.com/prajwalpg/pgportfolio
+- **Email:** prajwal02pg@gmail.com
+
+---
 
 ## Overview
 
-AI Engineer with experience in:
+AI Engineer with hands-on experience in developing AI-powered applications, computer vision systems, document intelligence pipelines, and modern web applications.
+
+### Areas of Focus
 
 - Generative AI
 - Large Language Models (LLMs)
@@ -20,13 +31,15 @@ AI Engineer with experience in:
 - Document Intelligence
 - AI Proctoring
 
+---
+
 ## Featured Projects
 
 ### SAHAYAK — Multi-Agent AI Educational Platform
 
-A Multi-Agent AI platform built using RAG, Gemini APIs, Next.js, PostgreSQL, and Prisma ORM.
+A Multi-Agent AI platform built using **RAG, Gemini APIs, Next.js, PostgreSQL, and Prisma ORM**.
 
-Key capabilities:
+### Key Capabilities
 
 - AI-powered tutoring
 - Worksheet generation
@@ -39,11 +52,13 @@ Key capabilities:
 
 **Tech Stack:** Next.js, Node.js, PostgreSQL, Prisma ORM, Gemini API, Tailwind CSS
 
+---
+
 ### Smart Attendance System
 
-An AI-powered attendance automation system using computer vision and facial recognition.
+An AI-powered attendance automation system using **computer vision and facial recognition**.
 
-Key components:
+### Key Components
 
 - Face detection using SSD
 - Feature embeddings using MobileNetV2
@@ -52,9 +67,13 @@ Key components:
 
 **Tech Stack:** Python, OpenCV, TensorFlow, MobileNetV2
 
+---
+
 ## Experience
 
 ### HirePro Technologies — Frontend & AI Research Intern
+
+**January 2026 – April 2026**
 
 Worked on proof-of-concept modules for AI-assisted online assessment monitoring.
 
@@ -67,7 +86,11 @@ Worked on proof-of-concept modules for AI-assisted online assessment monitoring.
 - Computer-vision-based assessment monitoring
 - Research and evaluation of assessment integrity systems
 
+---
+
 ### Runshaw Technologies — Deep Learning Intern
+
+**January 2026 – May 2026**
 
 Worked on an end-to-end document intelligence pipeline for extracting structured product information from packaging images.
 
@@ -77,6 +100,8 @@ Worked on an end-to-end document intelligence pipeline for extracting structured
 - Transfer learning
 - Image classification using ResNet, VGG, and EfficientNet
 - REST API integration
+
+---
 
 ## Technical Skills
 
@@ -133,24 +158,29 @@ Worked on an end-to-end document intelligence pipeline for extracting structured
 - Authentication Systems
 - Cloud-Based Architecture
 
+---
+
 ## Education
 
 ### B.E. — Computer Science & Engineering
+
 **Artificial Intelligence & Machine Learning**
 
 PES College of Engineering, Mandya
 
-**CGPA:** 7.18 / 10
+**CGPA:** 7.18 / 10  
+**Graduation:** 2026
 
-**2026**
+---
 
 ### Diploma — Computer Science & Engineering
 
 Government CPC Polytechnic, Mysuru
 
-**CGPA:** 8.83 / 10
+**CGPA:** 8.83 / 10  
+**Graduation:** 2023
 
-**2023**
+---
 
 ## Certifications & Achievements
 
@@ -158,12 +188,14 @@ Government CPC Polytechnic, Mysuru
 - XPro Project: Azure DevOps
 - CCNA 200-301 Network
 - National Cadet Corps (NCC) "C" Certificate
-- 2nd Place — Innovate-A-Thon, PES College of Engineering, Mandya
+- **2nd Place — Innovate-A-Thon**, PES College of Engineering, Mandya
   - Agri-Tech & Rural Development
+
+---
 
 ## Portfolio Visual Experience
 
-The portfolio uses AI/ML concepts as part of the visual design.
+The portfolio uses AI/ML concepts as part of its visual design to demonstrate how technical concepts can be represented through interactive interfaces.
 
 ### Neural Network
 
@@ -181,7 +213,7 @@ An abstract vector-space visualization represents relationships between:
 - NLP
 - Deep Learning
 
-### Computer Vision
+### Computer Vision Pipeline
 
 ```text
 Image
